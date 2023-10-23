@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 	private int tiempoDeRegeneracionDeAutos;
 	private int milisegundos;
 	private int segundos;
-	private int tiempoTotalDePartida;
+	private int tiempoTotalDePartida;			
 	private int sumaTotal;
 	private Clip audioFondo;
 	private Clip audioPantallaPuntosGano;
@@ -87,7 +87,7 @@ public class Juego extends InterfaceJuego {
 
 		/// Tiempo en sistema
 
-		if (sakura != null) {
+		if (layka != null) {
 			tickFrecuencia++;
 			int contador = 1;
 			if (tickFrecuencia >= 81 * contador) {
@@ -141,11 +141,11 @@ public class Juego extends InterfaceJuego {
 
 		//// ESCRITURA SOBRE INTERFAZ USUARIO /////
 
-		// Dibuja cantidad de ninjas muertos
+		// Dibuja cantidad de autos muertos
 
-//		textoNinjasMuertos = Integer.toString(ninjasMuertos);
+//		textoAutosMuertos = Integer.toString(AutosMuertos);
 //		entorno.cambiarFont("sans", 20, Color.orange);
-//		entorno.escribirTexto(textoNinjasMuertos, entorno.ancho() - 744, entorno.alto() - 547);
+//		entorno.escribirTexto(textoAutosMuertos, entorno.ancho() - 744, entorno.alto() - 547);
 
 
 		// Dibuja Carga del Rasengan
@@ -160,10 +160,10 @@ public class Juego extends InterfaceJuego {
 			textoTiempoRestante = Integer.toString(tiempoTotalDePartida - segundos);
 			entorno.cambiarFont("sans", 30, Color.orange);
 			entorno.escribirTexto(textoTiempoRestante, entorno.ancho() - 223, entorno.alto() - 43);
-//			if ((totalDeEntregasRealizadas * 5) * (ninjasMuertos + 1) >= puntajeMaximo) {
+//			if ((totalDeEntregasRealizadas * 5) * (autosMuertos + 1) >= puntajeMaximo) {
 //				entorno.dibujarImagen(imagenPantallaFinalJuego, entorno.ancho() / 2, entorno.alto() / 2, 0);
 //				entorno.dibujarImagen(imagenPantallaFinalJuegoGanaste, entorno.ancho() / 2, entorno.alto() - 550, 0);
-//				sumaTotal = (totalDeEntregasRealizadas * 5) * (ninjasMuertos + 1);
+//				sumaTotal = (totalDeEntregasRealizadas * 5) * (autosMuertos + 1);
 //				audioPantallaPuntosGanoFondo.start();
 //				audioPantallaPuntosGano.start();
 //				audioFondo.stop();
@@ -183,10 +183,10 @@ public class Juego extends InterfaceJuego {
 
 		// Sistema de Entrega
 
-//		if (stockDePedidos == 0 && sakura != null) {
+//		if (stockDePedidos == 0 && layka != null) {
 //			ubicacionFloreria = flecha.marcaFloreria(aldea); // actual lugarRetiro
 //			audioFlechaFloreria.start();
-//			if (sakura.llegoALaFlecha(ubicacionFloreria)) {
+//			if (layka.llegoALaFlecha(ubicacionFloreria)) {
 //				audioFlechaFloreria.stop();
 //				audioFlechaFloreria.setFramePosition(0);
 //				Herramientas.cargarSonido("floreriaCargaPedido.wav").start();
@@ -196,8 +196,8 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-//		if (layka != null && stockDePedidos != 0 && sakura.llegoALaFlecha(siguienteUbicacion)) {
-//			Herramientas.cargarSonido("sakuraEntrega.wav").start();
+//		if (layka != null && stockDePedidos != 0 && layka.llegoALaFlecha(siguienteUbicacion)) {
+//			Herramientas.cargarSonido("laykaEntrega.wav").start();
 //			stockDePedidos--;
 //			totalDeEntregasRealizadas++;
 //			siguienteUbicacion = flecha.elegirCasa(aldea);
@@ -229,8 +229,8 @@ public class Juego extends InterfaceJuego {
 			numeroAutoMuerto = rayo.impactoConAuto(autos);
 			if (numeroAutoMuerto != -1) {
 				Herramientas.cargarSonido("ninjaMuerto.wav").start();
-				segundosMuerteNinja = segundos;
-				ninjasMuertos++;
+				segundosMuerteAuto = segundos;
+				autosMuertos++;
 				rayo = null;
 				autoMuerto = autos[numeroAutoMuerto];
 				autos[numeroAutoMuerto] = null;
@@ -239,7 +239,7 @@ public class Juego extends InterfaceJuego {
 
 		// Regeneracion Auto
 
-		if (tiempoDeRegeneracionDelAuto + segundosMuerteAuto <= segundos && numeroNinjaAuto != -1) {
+		if (tiempoDeRegeneracionDelAuto + segundosMuerteAuto <= segundos && numeroAutoMuerto != -1) {
 			Herramientas.cargarSonido("ninjaOkeyVamos.wav").start();
 			autos[numeroAutoMuerto] = new Auto(autoMuerto.x(), autoMuerto.y(), autoMuerto.direccion());
 			autoMuerto = null;
@@ -286,7 +286,7 @@ public class Juego extends InterfaceJuego {
 
 		camino = new Camino();
 
-		// Sakura
+		// Layka
 
 		layka = new Layka();
 
@@ -296,7 +296,7 @@ public class Juego extends InterfaceJuego {
 		milisegundos = 0;
 		segundos = 0;
 		tiempoTotalDePartida = 60;
-		ninjasMuertos = 0;
+		autosMuertos = 0;
 		segundosMuerteAuto = 0;
 		segundosCargaRayo = 0;
 		tiempoDeRegeneracionDelAuto = 5;
@@ -325,7 +325,7 @@ public class Juego extends InterfaceJuego {
 				posicionX = numeroRandom(0, entorno.alto() - 93);
 				posicionY = camino.caminoDePatrullaAutoSub(i);
 
-				if (i == 3 && direccionNinja == "R") { // calle de layka
+				if (i == 3 && direccionAuto == "R") { // calle de layka
 					posicionX = numeroRandom(486, entorno.ancho());
 				} else {
 					posicionX = numeroRandom(0, 314);
