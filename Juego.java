@@ -28,8 +28,8 @@ public class Juego extends InterfaceJuego {
 	private Image imagenPantallaFinalJuego;
 	private Image imagenPantallaFinalJuegoGanaste;
 	private Image imagenPantallaFinalJuegoPerdiste;
-	private int segundosMuerteNinja;
-	private int segundosCargaRasengan;
+	private int segundosMuerteAuto;
+	private int segundosCargaRayo;
 	private int tiempoDeRegeneracionDeAutos;
 	private int milisegundos;
 	private int segundos;
