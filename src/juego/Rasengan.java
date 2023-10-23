@@ -79,3 +79,4 @@ public class Rasengan {
 		return y;
 	}
 }
+//Rayo de layka destruye plantas, pero bola de fuego destruye a layka, autos y otras plantas.
